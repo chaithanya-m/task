@@ -2,6 +2,46 @@
 
 <% if user_signed_in? %>
   <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete}%>
+  <%= form_with(model: @task, url: tasks_path, method: :post) do |form| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+        <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= form.label :task %>
+      <%= form.text_field :task %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, ['todo', 'done'] %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+
+  <% if @tasks.any? %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li>
+         <%= task.task %>
+         <%= link_to "remove task ", task_path(id:task.id), data: { "turbo-method": :delete }  %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tasks available.</p>
+<% end %>
+  
 <% else %>
   <span> <%= link_to "sing in" , new_user_session_path %></span>
   <span> or </span>
