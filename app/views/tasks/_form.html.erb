@@ -1,11 +1,8 @@
 <%= form_with(model: task, method: task.persisted? ? :patch : :post) do |form| %>
   <% if task.errors.any? %>
-  
     <div id="error_explanation">
       <ul>
         <% task.errors.full_messages.each do |message| %>
-          <% puts "test"*10 %>
-          <p></p>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -19,7 +16,7 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, ['todo', 'done', ''], include_blank: true %>
+    <%= form.select :status, ['todo', 'done']%>
   </div>
 
   <div class="actions">

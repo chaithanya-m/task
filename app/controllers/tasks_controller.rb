@@ -10,7 +10,7 @@ class TasksController < ApplicationController
       redirect_to root_path, notice: 'Task was successfully created.'
     else
       # binding.break
-      render :new
+      render :new, status: 422
     end
   end
 
@@ -19,10 +19,12 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find(params[:id])
+
     if @task.update(task_params)
       redirect_to root_path, notice: 'Task was successfully updates.'
     else
-      render :edit
+      render :edit, status: 422
     end
   end
 

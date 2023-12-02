@@ -2,8 +2,6 @@
   <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete}%>
   <br>
   <%= link_to "add new task" ,new_task_path %>
-
-
   <% if current_user.tasks.any? %>
   <ul>
     <% current_user.tasks.each do |task| %>
@@ -31,8 +29,9 @@
 <div>
   <h3>public tasks</h3>
   <% @public_users.each do |user| %>
-    <h4> <%= user.email %> </h4>
     <ul>
+
+    <h4> <%= user.email %> </h4>
       <% user.tasks.each do |task| %>
         <li>
           <%= task.task %>
