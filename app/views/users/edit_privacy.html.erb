@@ -1,7 +1,7 @@
 <%= form_for(@user, url: update_privacy_user_path, method: :patch) do |form| %>
   <div class="form-group">
-    <%= form.check_box :privacy, id: 'privacySwitch' %>
-    <%= form.label :private,  for: 'privacySwitch',label: 'Custom Private Label' %>
+    <%= form.check_box :private, id: 'privateSwitch' %>
+    <%= form.label :private,  for: 'privateSwitch'%>
   </div>  
 
   <%= form.label :password %>
@@ -10,5 +10,5 @@
   <%= form.label :password_confirmation %>
   <%= form.password_field :password_confirmation  %>
 
-  <%= form.submit 'Update Privacy' %>
+  <%= form.submit 'Update ' %>
 <% end %>

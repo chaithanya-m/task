@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @public_users = User.joins(:tasks).where(privacy:false).distinct
+    @public_users = User.joins(:tasks).where(private: false).distinct
   end
 end

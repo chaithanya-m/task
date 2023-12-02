@@ -1,17 +1,43 @@
 <% if user_signed_in? %>
+<div type="button" class="btn ">
   <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete}%>
+  </div>
   <br>
-  <%= link_to "add new task" ,new_task_path %>
+  <div type="button" class="btn ">
+    <%= link_to "add new task" ,new_task_path %>
+  </div>  
+  
   <% if current_user.tasks.any? %>
-  <ul>
+  <ol>
+    <div class="row">
+      <div class="col-3">
+        <p> tasks </p>
+      </div>
+      <div class="col-1">
+        <p> status </p> 
+      </div>
+      <div class="col-2">
+        <p> actions </p>
+      </div>
+    </div>
     <% current_user.tasks.each do |task| %>
       <li>
-         <%= task.task %>
-         <%= link_to 'remove task ', task_path(id:task.id), data: { "turbo-method": :delete }  %>
-         <%= link_to 'edit' , edit_task_path(id:task.id) %>
+      <div class="row">
+        <div class="col-3">
+          <%= task.task %>
+        </div>
+        <div class="col-1"> 
+          <%= task.status.upcase %>
+        </div>
+        <div class="col-2">
+          <%= link_to 'remove task ', task_path(id:task.id), data: { "turbo-method": :delete }  %>
+          <span> |</span>
+          <%= link_to 'edit' , edit_task_path(id:task.id) %>
+        </div>
+      </div>
       </li>
     <% end %>
-  </ul>
+  </ol>
   <% else %>
     <p>No tasks available.</p>
   <% end %>
@@ -19,27 +45,48 @@
   <span> to change privacy settings</span> 
   <%= link_to 'click here', edit_privacy_user_path(id:current_user.id) %> 
   
-<% else %>
-  <span> <%= link_to "sing in" , new_user_session_path %></span>
-  <span> or </span>
-  <span> <%= link_to "sing up" , new_user_registration_path %> </span>
-<% end %>
+  <% else %>
+    
+    <div type="button" class="btn ">
+      <%= link_to "sing in" , new_user_session_path %>
+    </div>
+    <span> or </span>
+    <div type="button" class="btn ">
+      <%= link_to "sing up" , new_user_registration_path %> 
+    </div>    
+  <% end %>
 <hr>
-<% if @public_users.any? %>
 <div>
-  <h3>public tasks</h3>
-  <% @public_users.each do |user| %>
-    <ul>
-
-    <h4> <%= user.email %> </h4>
+  <% if @public_users.any? %>
+    <div>
+      <h4>public tasks</h4>
+      <% @public_users.each do |user| %>
+      <ol>
+        <h5> <%= user.email %> </h5>
+        <div class="row">
+          <div class="col-3">
+            <h6> tasks </h6>
+          </div>
+          <div class="col-1">
+            <h6> status </h6> 
+          </div>
+        </div>
       <% user.tasks.each do |task| %>
         <li>
-          <%= task.task %>
+          <div class="row">
+            <div class="col-3">
+              <%= task.task %>
+            </div>
+            <div class="col-1"> 
+              <%= task.status.upcase %>
+            </div>
+          </div>
         </li>
       <% end %>
-    </ul>
+      </ol>
+    <% end %>
+  </div>
+  <% else %>
+  <h3> No public tasks </h3>
   <% end %>
 </div>
-<% else %>
-<h3> No public tasks </h3>
-<% end %>
