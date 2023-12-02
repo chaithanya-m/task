@@ -4,7 +4,8 @@ class HomeController < ApplicationController
       @task = Task.new
       @tasks = current_user.tasks
     else
-      
     end
+    @public_users = User.joins(:tasks).where(privacy:false)
+
   end
 end

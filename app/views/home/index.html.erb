@@ -48,4 +48,21 @@
   <span> or </span>
   <span> <%= link_to "sing up" , new_user_registration_path %> </span>
 <% end %>
+<hr>
+<% if @public_users.any? %>
 <div>
+  <h3>public tasks</h3>
+  <% @public_users.each do |user| %>
+    <h4> <%= user.email %> </h4>
+    <ul>
+      <% user.tasks.each do |task| %>
+        <li>
+          <%= task.task %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+<% else %>
+<h3> No public tasks </h3>
+<% end %>
