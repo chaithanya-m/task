@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   resources :tasks
+
+  resources :users do
+    member do
+      get 'edit_privacy'
+      patch 'update_privacy'
+    end
+  end
 end

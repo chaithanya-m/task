@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       @task = Task.new
       @tasks = current_user.tasks
     else
+      
     end
-
   end
 end
