@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
 
-
   def new
     @task = Task.new
   end
@@ -11,7 +10,6 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path
     else
-      # binding.break
       render :new, status: 422
     end
   end
@@ -24,7 +22,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update(task_params)
-      redirect_to root_path, notice: 'Task was successfully updates.'
+      redirect_to root_path, notice: 'Task was successfully updated.'
     else
       render :edit, status: 422
     end
