@@ -1,14 +1,14 @@
 # README
-Prerequisites
-  Ruby 3.1.0
-  SQLite3
+## Prerequisites
+  1. Ruby 3.1.0
+  2. SQLite3
 
 
-Development Setup
-  Clone the repo
-    `git clone `
-  Install dependencies and prepare database
-    `yarn install`
-    `./bin/setup`
-  Start server
-    `./bin/dev`
+## Development Setup
+ 1. Clone the repo
+ - `git clone `
+ 2. Install dependencies and prepare database
+ - `yarn install`
+ - `./bin/setup`
+3. Start server
+ - `./bin/dev`
