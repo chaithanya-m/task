@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+
 
   def new
     @task = Task.new
@@ -7,7 +9,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to root_path, notice: 'Task was successfully created.'
+      redirect_to root_path
     else
       # binding.break
       render :new, status: 422

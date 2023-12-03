@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def edit_privacy
     @user = current_user
@@ -15,6 +16,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:private, :password, :password_confirmation)
+    params.require(:user).permit(:private)
   end
 end

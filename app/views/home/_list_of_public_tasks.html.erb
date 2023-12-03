@@ -1,0 +1,27 @@
+<div>
+	<% if tasks.any? %>
+  	<ol>
+    	<div class="row">
+      		<div class="col-3">
+        		<b>  <%= task_type %>  List</b>
+      		</div>
+      		<div class="col-2">
+        		<b> User </b>
+      		</div>
+    	</div>
+    	<% tasks.each do |task| %>
+      		<li>
+      			<div class="row">
+        			<div class="col-3">
+          				<%= task.task %>
+        			</div>
+        			<div class="col-2">
+          				<%= task.user.email %>
+        			</div>
+      			</div>
+      		</li>
+    	<% end %>
+  	</ol>
+  <% else %>
+    <b>ther are no <%= task_type %> tasks </b>
+  <% end %></div>
